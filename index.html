@@ -168,13 +168,13 @@
 <img src="https://i.loli.net/2021/05/09/fsRDw1AS2VpO35o.png">
 
 <h2 id="解决方案-一"><a href="#解决方案-一" class="headerlink" title="解决方案(一)"></a>解决方案(一)</h2><ol>
-<li>在博客文件夹(通常是<strong>\blog</strong>)中删除时**.deploy_git**文件</li>
-<li>命令行(terminal)[不推荐使用<strong>cmd</strong>, 使用<strong>git bash</strong>等]中输入 <code>git config --global core.autocrlf false</code>把git加入系统环境变量</li>
+<li>在博客文件夹(通常是<strong>\blog</strong>)中删除时 <strong>.deploy_git</strong> 文件</li>
+<li>命令行(terminal)[不推荐使用<strong>cmd</strong>, 使用 <strong>git bash</strong> 等] 中输入 <code>git config --global core.autocrlf false</code>把git加入系统环境变量</li>
 <li>重新执行<code>hexo c</code> <code>hexo g</code>  <code>hexo d</code></li>
 </ol>
 <p>上Google百度一查大部分都是这种方法, xdm可以自己试试看万一成了呢. 但我下面推荐另一种可能的解决方案</p>
 <h2 id="解决方案-二"><a href="#解决方案-二" class="headerlink" title="解决方案(二)"></a>解决方案(二)</h2><ol>
-<li><p>首先用文本编辑器(我使用的是Notepad++)打开博客文件夹(通常是<strong>\blog</strong>)中的**_config.yml**配置文件 </p>
+<li><p>首先用文本编辑器(我使用的是Notepad++)打开博客文件夹(通常是<strong>\blog</strong>)中的 <strong>_config.yml</strong> 配置文件 </p>
 </li>
 <li><p>修改配置文件中的<strong>repo</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># Deployment</span><br><span class="line">## Docs: https://hexo.io/docs/one-command-deployment</span><br><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo:	https://github.com/YourName/YourName.github.io.git(不要使用这个)</span><br><span class="line">  		git@github.com:YourName/YourName.github.io.git(用这个)</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure></li>
