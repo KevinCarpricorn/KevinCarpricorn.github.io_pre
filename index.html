@@ -164,7 +164,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="dnorm-pnorm-qnorm-rnorm的区别"><a href="#dnorm-pnorm-qnorm-rnorm的区别" class="headerlink" title="dnorm, pnorm, qnorm, rnorm的区别"></a>dnorm, pnorm, qnorm, rnorm的区别</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>dnorm, pnorm, qnorm, rnorm 是R语言中常用的正态分布函数. <strong>norm</strong> 指的是正态分布(也可以叫高斯分布(<strong>normal distribution</strong>)), R语言中也有其他不同的分布操作也都类似. <strong>p q d r</strong> 这里分别指的是不同的函数下面将会详细简介这不同函数在正态分布中的应用以及这是个命令在R中如何使用.</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>dnorm, pnorm, qnorm, rnorm 是R语言中常用的正态分布函数. <strong>norm</strong> 指的是正态分布(也可以叫高斯分布(<strong>normal distribution</strong>)), R语言中也有其他不同的分布操作也都类似. <strong>p q d r</strong> 这里分别指的是不同的函数下面将会详细简介这不同函数在正态分布中的应用以及这是个命令在R中如何使用.</p>
 <h2 id="dnorm"><a href="#dnorm" class="headerlink" title="dnorm"></a>dnorm</h2><p><strong>d</strong> - 指的是概率密度函数(probability density function) </p>
 <p>正态分布的公式:<br>$$<br>f(x|\mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}<br>$$<br><img src="https://i.loli.net/2021/05/09/oEpTxL26XQB7AFZ.png" width="75%"></p>
 <p>dnorm实质上就是返回上面这个函数的值. 说人话就是返回z-score.下面我们在代码中演示下:</p>
