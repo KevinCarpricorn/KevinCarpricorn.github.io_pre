@@ -180,7 +180,7 @@
 <p>上图用R可以这么写</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pnorm(<span class="number">2</span>) <span class="comment"># 0.9772499</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="qnorm"><a href="#qnorm" class="headerlink" title="qnorm"></a>qnorm</h2><p><strong>d</strong> - 指的是分位数函数(quantile function)</p>
+<h2 id="qnorm"><a href="#qnorm" class="headerlink" title="qnorm"></a>qnorm</h2><p><strong>q</strong> - 指的是分位数函数(quantile function)</p>
 <p>简单来说它就是pnorm的反函数, 通过百分比算z-score, 我知道分位数求z-score, 例如:</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在标准正态分布中求z-score</span></span><br><span class="line">qnorm(<span class="number">0.5</span>) <span class="comment"># 0</span></span><br><span class="line">qnorm(<span class="number">0.96</span>) <span class="comment"># 1.750686</span></span><br><span class="line">qnorm(<span class="number">0.99</span>) <span class="comment"># 2.326348</span></span><br></pre></td></tr></table></figure>
 
