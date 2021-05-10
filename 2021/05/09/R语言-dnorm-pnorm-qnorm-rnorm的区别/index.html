@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://i.loli.net/2021/05/09/oEpTxL26XQB7AFZ.png">
 <meta property="og:image" content="https://i.loli.net/2021/05/09/UunzrTedDcxh7Vf.png">
 <meta property="article:published_time" content="2021-05-09T12:02:30.000Z">
-<meta property="article:modified_time" content="2021-05-09T14:02:29.733Z">
+<meta property="article:modified_time" content="2021-05-10T02:46:06.153Z">
 <meta property="article:author" content="Kevin">
 <meta property="article:tag" content="R">
 <meta name="twitter:card" content="summary">
@@ -174,8 +174,8 @@
         <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>dnorm, pnorm, qnorm, rnorm 是R语言中常用的正态分布函数. <strong>norm</strong> 指的是正态分布(也可以叫高斯分布(<strong>normal distribution</strong>)), R语言中也有其他不同的分布操作也都类似. <strong>p q d r</strong> 这里分别指的是不同的函数下面将会详细简介这不同函数在正态分布中的应用以及这是个命令在R中如何使用.</p>
 <h2 id="dnorm"><a href="#dnorm" class="headerlink" title="dnorm"></a>dnorm</h2><p><strong>d</strong> - 指的是概率密度函数(probability density function) </p>
 <p>正态分布的公式:<br>$$<br>f(x|\mu, \sigma)=\frac{1}{\sqrt{2\pi}}e^{-\frac{x^{2}}{2}}<br>$$<br><img src="https://i.loli.net/2021/05/09/oEpTxL26XQB7AFZ.png" width="75%"></p>
-<p>dnorm实质上就是返回上面这个函数的值. 说人话就是返回z-score.下面我们在代码中演示下:</p>
-<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出在标准正态分布下(mean = 0, standard deviation = 1) 0 的z-sore</span></span><br><span class="line">dnorm(<span class="number">0</span>, mean=<span class="number">0</span>, sd=<span class="number">1</span>)</span><br><span class="line"><span class="comment"># 因为是标准正态分布所以mean和sd是可以省略的</span></span><br><span class="line">dnorm(<span class="number">0</span>)</span><br><span class="line"><span class="comment"># 如果是一个非标准正态分布如下:</span></span><br><span class="line">dnorm(<span class="number">2</span>, mean=<span class="number">5</span>, sd=<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+<p>dnorm实质上是正态分布概率密度函数值. 说人话就是返回上面这个函数的值.下面我们在代码中演示下:</p>
+<figure class="highlight r"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 输出在标准正态分布下(mean = 0, standard deviation = 1) 0 的z-sore</span></span><br><span class="line">dnorm(<span class="number">0</span>, mean=<span class="number">0</span>, sd=<span class="number">1</span>) <span class="comment"># 0.3989423</span></span><br><span class="line"><span class="comment"># 因为是标准正态分布所以mean和sd是可以省略的</span></span><br><span class="line">dnorm(<span class="number">0</span>) <span class="comment"># 0.3989423</span></span><br><span class="line"><span class="comment"># 如果是一个非标准正态分布如下:</span></span><br><span class="line">dnorm(<span class="number">2</span>, mean=<span class="number">5</span>, sd=<span class="number">3</span>) <span class="comment"># 0.08065691</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="pnorm"><a href="#pnorm" class="headerlink" title="pnorm"></a>pnorm</h2><p><strong>p</strong> - 指的是概率密度积分函数（从无限小到 x 的积分）(Probability density integral function)</p>
 <p>x指的是一个z-score, 专业名词听着玄幻, 其实就是正态分布曲线下x左边的面积(概率占比), 我们知道z-score求在哪个分为数上</p>
