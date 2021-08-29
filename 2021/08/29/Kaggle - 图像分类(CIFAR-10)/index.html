@@ -7,14 +7,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
   <meta name="google-site-verification" content="Qn0f7gRiO6ROa2Mtb8X1FrRq_outZkKfupQFw1dCcSg" />
-  <title>Archives | Kevin�ĸ��˲���</title>
+  <title>Kaggle--图像分类(CIFAR-10) 基于Pytorch的实现 | Kevin�ĸ��˲���</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kevin�ĸ��˲���">
-<meta property="og:url" content="http://example.com/archives/index.html">
+  <meta name="description" content="CIFAR-10 是计算机视觉领域中一个非常重要的数据集. 它由Hinton的学生Alex Krizhevsky 和 Ilya Sutskever整理的小型数据集. 其中包括 10 个不同类别的RGB 3通道 32 * 32 的图像: 飞机 (airplane)、汽车 (automobile)、鸟类 (bird)、猫 (cat)、鹿(deer)、狗(dog)、蛙类(frog)、马(horse)、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kaggle--图像分类(CIFAR-10) 基于Pytorch的实现">
+<meta property="og:url" content="http://example.com/2021/08/29/Kaggle%20-%20%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB(CIFAR-10)/index.html">
 <meta property="og:site_name" content="Kevin�ĸ��˲���">
+<meta property="og:description" content="CIFAR-10 是计算机视觉领域中一个非常重要的数据集. 它由Hinton的学生Alex Krizhevsky 和 Ilya Sutskever整理的小型数据集. 其中包括 10 个不同类别的RGB 3通道 32 * 32 的图像: 飞机 (airplane)、汽车 (automobile)、鸟类 (bird)、猫 (cat)、鹿(deer)、狗(dog)、蛙类(frog)、马(horse)、">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-08-29T09:26:15.000Z">
+<meta property="article:modified_time" content="2021-08-29T12:06:09.034Z">
 <meta property="article:author" content="Kevin">
+<meta property="article:tag" content="Pytorch">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternative" href="/atom.xml" title="Kevin�ĸ��˲���" type="application/atom+xml">
@@ -143,36 +148,124 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-Kaggle - 图像分类(CIFAR-10)" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2021" class="archive-year">2021</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/08/29/Kaggle%20-%20%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB(CIFAR-10)/" class="archive-article-date">
-  	<time datetime="2021-08-29T09:26:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/08/29/Kaggle%20-%20%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB(CIFAR-10)/">Kaggle--图像分类(CIFAR-10) 基于Pytorch的实现</a>
+    <h1 class="article-title" itemprop="name">
+      Kaggle--图像分类(CIFAR-10) 基于Pytorch的实现
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2021/08/29/Kaggle%20-%20%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB(CIFAR-10)/" class="archive-article-date">
+  	<time datetime="2021-08-29T09:26:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-08-29</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>CIFAR-10 是计算机视觉领域中一个非常重要的数据集. 它由Hinton的学生Alex Krizhevsky 和 Ilya Sutskever整理的小型数据集. 其中包括 10 个不同类别的RGB 3通道 32 * 32 的图像: 飞机 (airplane)、汽车 (automobile)、鸟类 (bird)、猫 (cat)、鹿(deer)、狗(dog)、蛙类(frog)、马(horse)、船(ship) 和卡车 (truck). 我们可以直接从Kaggle官网获得数据集 <a target="_blank" rel="noopener" href="https://www.kaggle.com/c/cifar-10">https://www.kaggle.com/c/cifar-10</a>. 其中包含一个test文件和train文件.  test 文件中有60000张图像, 每个类各有6000张. train文件中包含300000万张图像, 其中只有10000张作为测试, 省下的是Kaggle为了防止人工标记数据集的额外数据. </p>
+</blockquote>
+<h2 id="1-整理数据集"><a href="#1-整理数据集" class="headerlink" title="1. 整理数据集"></a>1. 整理数据集</h2><p>首先我们先导入一些必要的库</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> torch</span><br><span class="line"><span class="keyword">import</span> shutil</span><br><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">import</span> torchvision</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">from</span> torch <span class="keyword">import</span> nn</span><br><span class="line"><span class="keyword">from</span> torchvision <span class="keyword">import</span> models</span><br><span class="line"><span class="keyword">from</span> torch.utils.data <span class="keyword">import</span> DataLoader</span><br><span class="line"></span><br><span class="line">data_dir = <span class="string">&quot;C:\\Users\\***\\OneDrive\\桌面\\kaggle\\CIFAR-10&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>我们需要对数据集进行整理以一遍训练和测试使用. 函数<strong>read_labels</strong>用来读取训练集的标签文件并以 <strong>name: label</strong> 的字典形式储存.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">read_labels</span>(<span class="params">file</span>):</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(file, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        lines = f.readlines()[<span class="number">1</span>:]	<span class="comment">#从1开始读是为了排序文件的title行</span></span><br><span class="line">    tokens = [l.rstrip().split(<span class="string">&#x27;,&#x27;</span>) <span class="keyword">for</span> l <span class="keyword">in</span> lines]</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dict</span>((name, label) <span class="keyword">for</span> name, label <span class="keyword">in</span> tokens)</span><br></pre></td></tr></table></figure>
+
+<p>我们使用一种非常常规的数据处理方法将文件每个标签作为一个文件夹储存对应的图片, 但这种方法并不高效, 我们相当于把所有图片copy了一次, 当数据量非常大到时候这个方法可能会过于耗时.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">copyfile</span>(<span class="params">filename, target_dir</span>):</span>	<span class="comment">#将图片复制到对应文件夹, 如果文件夹不存在则创建文件夹</span></span><br><span class="line">    os.makedirs(target_dir, exist_ok=<span class="literal">True</span>)</span><br><span class="line">    shutil.copy(filename, target_dir)</span><br></pre></td></tr></table></figure>
+
+<p>下面我们对所有图片进行reorganize, 其中valid_ratio是验证集样本和原始数据集样本的比 (我们需要把数据急分成两部分一部分用作验证一部分用作训练, 由于数据量并不是很小所以不需要做k折交叉验证). 让我们以 valid_ratio=0.1 为例，由于原始的训练集有 50000 张图像，因此 train_valid_test/train 路径中将有 45000 张图像⽤ 于训练，而剩下 5000 张图像将作为路径 train_valid_test/valid 中的验证集。组织数据集后，同类别的图像将被放置在同⼀⽂件夹下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reorg_train_valid</span>(<span class="params">data_dir, labels, valid_ratio</span>):</span></span><br><span class="line">    n = collections.Counter(labels.values()).most_common()[-<span class="number">1</span>][<span class="number">1</span>]	<span class="comment">#每一个标签的数量</span></span><br><span class="line">    n_valid_per_label = <span class="built_in">max</span>(<span class="number">1</span>, math.floor(n * valid_ratio))	<span class="comment">#验证集中每个标签的数量</span></span><br><span class="line">    label_count = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> train_file <span class="keyword">in</span> os.listdir(os.path.join(data_dir, <span class="string">&#x27;train&#x27;</span>)):</span><br><span class="line">        label = labels[train_file.split(<span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]]</span><br><span class="line">        filename = os.path.join(data_dir, <span class="string">&#x27;train&#x27;</span>, train_file)</span><br><span class="line">        copyfile(filename, os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, <span class="string">&#x27;train_valid&#x27;</span>, label))</span><br><span class="line">        <span class="keyword">if</span> label <span class="keyword">not</span> <span class="keyword">in</span> label_count <span class="keyword">or</span> label_count[label] &lt; n_valid_per_label:</span><br><span class="line">            copyfile(filename, os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, <span class="string">&#x27;valid&#x27;</span>, label))</span><br><span class="line">            label_count[label] = label_count.get(label, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            copyfile(filename, os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, <span class="string">&#x27;train&#x27;</span>, label))</span><br><span class="line">    <span class="keyword">return</span> n_valid_per_label</span><br></pre></td></tr></table></figure>
+
+<p>然后我们再定义一个函数对测试集进行整理</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reorg_test</span>(<span class="params">data_dir</span>):</span></span><br><span class="line">    <span class="keyword">for</span> test_file <span class="keyword">in</span> os.listdir(os.path.join(data_dir, <span class="string">&#x27;test&#x27;</span>)):</span><br><span class="line">        copyfile(os.path.join(data_dir, <span class="string">&#x27;test&#x27;</span>, test_file),</span><br><span class="line">                 os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, <span class="string">&#x27;test&#x27;</span>, <span class="string">&#x27;unknown&#x27;</span>))</span><br><span class="line">      </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">reorg_CIFAR10</span>(<span class="params">data_dir, valid_ratio</span>):</span></span><br><span class="line">    labels = read_labels(os.path.join(data_dir, <span class="string">&#x27;trainLabels.csv&#x27;</span>))</span><br><span class="line">    reorg_train_valid(data_dir, labels, valid_ratio)</span><br><span class="line">    reorg_test(data_dir)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">batch_size = <span class="number">128</span></span><br><span class="line">valid_ratio = <span class="number">0.1</span>	<span class="comment"># 10% 的训练集数据作为验证集</span></span><br><span class="line">reorg_CIFAR10(data_dir, valid_ratio)</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-图像增广"><a href="#2-图像增广" class="headerlink" title="2. 图像增广"></a>2. 图像增广</h2><p>为了防止过拟合我们对图像进行增强, 由于测试集只用作测试所以我们字对其做标准化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">transform_train = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.Resize(<span class="number">40</span>),<span class="comment"># 这里吧图像放大到 40*40 后在按比例取32*32是为了取局部特征</span></span><br><span class="line">    torchvision.transforms.RandomResizedCrop(<span class="number">32</span>, scale=(<span class="number">0.64</span>, <span class="number">1.0</span>), ratio=(<span class="number">1.0</span>, <span class="number">1.0</span>)),</span><br><span class="line">    torchvision.transforms.RandomHorizontalFlip(),	<span class="comment"># 垂直翻转</span></span><br><span class="line">    torchvision.transforms.RandomVerticalFlip(),	<span class="comment"># 水平翻转</span></span><br><span class="line">    torchvision.transforms.ToTensor(),</span><br><span class="line">    torchvision.transforms.Normalize([<span class="number">0.4914</span>, <span class="number">0.4822</span>, <span class="number">0.4465</span>], [<span class="number">0.2023</span>, <span class="number">0.1994</span>, <span class="number">0.2010</span>]),</span><br><span class="line">    torchvision.transforms.ColorJitter(brightness=<span class="number">0.5</span>, contrast=<span class="number">0.5</span>, saturation=<span class="number">0.5</span>, hue=<span class="number">0.5</span>) <span class="comment"># 百分之五十的概率对曝光, 对比度, 饱和度, 色调进行变换</span></span><br><span class="line">])</span><br><span class="line"></span><br><span class="line">transform_test = torchvision.transforms.Compose([</span><br><span class="line">    torchvision.transforms.ToTensor(),</span><br><span class="line">    torchvision.transforms.Normalize([<span class="number">0.4914</span>, <span class="number">0.4822</span>, <span class="number">0.4465</span>], [<span class="number">0.2023</span>, <span class="number">0.1994</span>, <span class="number">0.2010</span>])</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-读取数据集"><a href="#3-读取数据集" class="headerlink" title="3. 读取数据集"></a>3. 读取数据集</h2><p>接下来问他们用torchvision.datasets.ImageFolder实例来读取不同的数据集包括每张图片的标签.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">train_ds, train_valid_ds = [</span><br><span class="line">    torchvision.datasets.ImageFolder(</span><br><span class="line">        os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, folder),</span><br><span class="line">        transform=transform_train</span><br><span class="line">    ) <span class="keyword">for</span> folder <span class="keyword">in</span> [<span class="string">&#x27;train&#x27;</span>, <span class="string">&#x27;train_valid&#x27;</span>]</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">valid_ds, test_ds = [</span><br><span class="line">    torchvision.datasets.ImageFolder(</span><br><span class="line">        os.path.join(data_dir, <span class="string">&#x27;train_valid_test&#x27;</span>, folder),</span><br><span class="line">        transform=transform_test</span><br><span class="line">    ) <span class="keyword">for</span> folder <span class="keyword">in</span> [<span class="string">&#x27;valid&#x27;</span>, <span class="string">&#x27;test&#x27;</span>]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p>使用DataLoader对数据进行图像增广的操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">train_iter, train_valid_iter = [</span><br><span class="line">    DataLoader(</span><br><span class="line">        dataset, batch_size, shuffle=<span class="literal">True</span>, drop_last=<span class="literal">True</span>	<span class="comment"># drop last现在可有可无</span></span><br><span class="line">    ) <span class="keyword">for</span> dataset <span class="keyword">in</span> (train_ds, train_valid_ds)</span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">valid_iter = DataLoader(valid_ds, batch_size, shuffle=<span class="literal">False</span>, drop_last=<span class="literal">True</span>, num_workers=<span class="number">4</span>)</span><br><span class="line">test_iter = DataLoader(test_ds, batch_size, shuffle=<span class="literal">False</span>, drop_last=<span class="literal">False</span>, num_workers=<span class="number">4</span>)</span><br><span class="line"><span class="comment"># num_workers 使用多线程运行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-定义模型"><a href="#4-定义模型" class="headerlink" title="4.定义模型"></a>4.定义模型</h2><p>这里我们使用models 模块中的resnet50模型, 对于CIAFAR-10我们从头训练不使用迁移学习. 但我们需要讲最后一层全连接层的输出改成我们需要的输出类别个数. 损失函数这里使用交叉熵误差.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_net</span>():</span></span><br><span class="line">    num_classes = <span class="number">10</span></span><br><span class="line">    net = models.resnet50(pretrained=<span class="literal">False</span>)</span><br><span class="line">    net.fc = nn.Linear(models.resnet50().fc.in_features, num_classes)</span><br><span class="line">    <span class="keyword">return</span> net</span><br><span class="line"></span><br><span class="line">loss = nn.CrossEntropyLoss(reduction=<span class="string">&quot;none&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="5-定义训练函数"><a href="#5-定义训练函数" class="headerlink" title="5. 定义训练函数"></a>5. 定义训练函数</h2><h3 id="辅助函数"><a href="#辅助函数" class="headerlink" title="辅助函数"></a>辅助函数</h3><p>对象Accumulator 用于计算所有变量之和</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Accumulator</span>:</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;For accumulating sums over `n` variables.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, n</span>):</span></span><br><span class="line">        self.data = [<span class="number">0.0</span>] * n</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">add</span>(<span class="params">self, *args</span>):</span></span><br><span class="line">        self.data = [a + <span class="built_in">float</span>(b) <span class="keyword">for</span> a, b <span class="keyword">in</span> <span class="built_in">zip</span>(self.data, args)]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">reset</span>(<span class="params">self</span>):</span></span><br><span class="line">        self.data = [<span class="number">0.0</span>] * <span class="built_in">len</span>(self.data)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__getitem__</span>(<span class="params">self, idx</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.data[idx]</span><br></pre></td></tr></table></figure>
+
+<p>accuracy 用于计算预测正确的数量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">accuracy</span>(<span class="params">y_hat, y</span>):</span></span><br><span class="line">    <span class="string">&quot;&quot;&quot;Compute the number of correct predictions.&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(y_hat.shape) &gt; <span class="number">1</span> <span class="keyword">and</span> y_hat.shape[<span class="number">1</span>] &gt; <span class="number">1</span>:</span><br><span class="line">        y_hat = argmax(y_hat, axis=<span class="number">1</span>)</span><br><span class="line">    cmp = astype(y_hat, y.dtype) == y</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">float</span>(reduce_sum(astype(cmp, y.dtype)))</span><br></pre></td></tr></table></figure>
+
+<p>evaluation_acc 用于计算验证准确率</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evaluate_acc</span>(<span class="params">net, data_iter, device=<span class="literal">None</span></span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(net, nn.Module):</span><br><span class="line">        net.<span class="built_in">eval</span>()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> device:</span><br><span class="line">            device = <span class="built_in">next</span>(<span class="built_in">iter</span>(net.parameters())).device</span><br><span class="line"></span><br><span class="line">    metric = Accumulator(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">with</span> torch.no_grad():</span><br><span class="line">        <span class="keyword">for</span> X, y <span class="keyword">in</span> data_iter:</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">isinstance</span>(X, <span class="built_in">list</span>):</span><br><span class="line">                X = [x.to(device) <span class="keyword">for</span> x <span class="keyword">in</span> X]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                X = X.to(device)</span><br><span class="line">            y = y.to(device)</span><br><span class="line">            metric.add(accuracy(net(X), y), size(y))</span><br><span class="line">    <span class="keyword">return</span> metric[<span class="number">0</span>] / metric[<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<p>train_batch 用于对每个batch进行训练</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_batch</span>(<span class="params">net, feature, label, loss, optimizer, device</span>):</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(feature, <span class="built_in">list</span>):</span><br><span class="line">        feature = [x.to(device) <span class="keyword">for</span> x <span class="keyword">in</span> feature]</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        feature = feature.to(device)</span><br><span class="line">    loss = loss.to(device)</span><br><span class="line">    net.train()</span><br><span class="line">    net.cuda()</span><br><span class="line">    label = label.cuda(<span class="number">0</span>)</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    pred = net(feature)</span><br><span class="line">    l = loss(pred, label)</span><br><span class="line">    l.<span class="built_in">sum</span>().backward()</span><br><span class="line">    optimizer.step()</span><br><span class="line">    train_loss_sum = l.<span class="built_in">sum</span>()</span><br><span class="line">    train_acc_sum = (pred.argmax(dim=<span class="number">1</span>) == label).<span class="built_in">sum</span>().item()</span><br><span class="line">    <span class="keyword">return</span> train_loss_sum, train_acc_sum</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义训练函数"><a href="#定义训练函数" class="headerlink" title="定义训练函数"></a>定义训练函数</h3><p>接下来我们定义train函数</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train</span>(<span class="params">net, train_iter, valid_iter, num_epochs, lr, wd, device, lr_period, lr_decay</span>):</span></span><br><span class="line">    output_params = <span class="built_in">list</span>(<span class="built_in">map</span>(<span class="built_in">id</span>, net.fc.parameters()))</span><br><span class="line">    feature_params = <span class="built_in">filter</span>(<span class="keyword">lambda</span> p: <span class="built_in">id</span>(p) <span class="keyword">not</span> <span class="keyword">in</span> output_params, net.parameters())</span><br><span class="line">    optimizer = torch.optim.Adam(net.parameters(), lr=lr, weight_decay=wd)</span><br><span class="line">    scheduler = torch.optim.lr_scheduler.StepLR(optimizer, lr_period, lr_decay)</span><br><span class="line">    num_batches = <span class="built_in">len</span>(train_iter)</span><br><span class="line">    legend = [<span class="string">&#x27;train loss&#x27;</span>, <span class="string">&#x27;train acc&#x27;</span>]</span><br><span class="line">    <span class="keyword">if</span> valid_iter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        legend.append(<span class="string">&#x27;valid acc&#x27;</span>)</span><br><span class="line">    net.cuda()</span><br><span class="line">    <span class="keyword">for</span> epoch <span class="keyword">in</span> <span class="built_in">range</span>(num_epochs):</span><br><span class="line">        start = time.time()</span><br><span class="line">        net.train()</span><br><span class="line">        metric = Accumulator(<span class="number">3</span>)</span><br><span class="line">        <span class="keyword">for</span> i, (feature, label) <span class="keyword">in</span> <span class="built_in">enumerate</span>(train_iter):</span><br><span class="line">            l, acc = train_batch(net, feature, label, loss, optimizer, device)</span><br><span class="line">            metric.add(l, acc, label.shape[<span class="number">0</span>])</span><br><span class="line">        <span class="keyword">if</span> valid_iter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">            valid_acc = evaluate_acc(net, valid_iter, device)</span><br><span class="line">        scheduler.step()</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;epoch+<span class="number">1</span>&#125;</span>&#x27;</span> + <span class="string">f&#x27;train loss <span class="subst">&#123;metric[<span class="number">0</span>] / metric[<span class="number">2</span>]:<span class="number">.3</span>f&#125;</span>&#x27;</span> + <span class="string">f&#x27;train acc <span class="subst">&#123;metric[<span class="number">1</span>] / metric[<span class="number">2</span>]:<span class="number">.3</span>f&#125;</span>&#x27;</span> + <span class="string">f&#x27; time: <span class="subst">&#123;time.time() - start&#125;</span> sec&#x27;</span>)</span><br><span class="line">    measures = (<span class="string">f&#x27;train loss <span class="subst">&#123;metric[<span class="number">0</span>] / metric[<span class="number">2</span>]:<span class="number">.3</span>f&#125;</span>, &#x27;</span></span><br><span class="line">                <span class="string">f&#x27;train acc <span class="subst">&#123;metric[<span class="number">1</span>] / metric[<span class="number">2</span>]:<span class="number">.3</span>f&#125;</span>&#x27;</span>)</span><br><span class="line">    <span class="keyword">if</span> valid_iter <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">None</span>:</span><br><span class="line">        measures += <span class="string">f&#x27;, valid acc <span class="subst">&#123;valid_acc:<span class="number">.3</span>f&#125;</span>&#x27;</span></span><br><span class="line">    <span class="built_in">print</span>(measures + <span class="string">f&#x27; examples/sec on <span class="subst">&#123;<span class="built_in">str</span>(device)&#125;</span>&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="6-训练模型"><a href="#6-训练模型" class="headerlink" title="6. 训练模型"></a>6. 训练模型</h2><p>我们开始对模型进行训练, 这里使用GPU训练, 并且lr_period, lr_decay我们设置为4, 0.9, 意味着每4个周期学习率自乘0.9</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">device, num_epochs, lr, wd = <span class="string">&#x27;cuda&#x27;</span>, <span class="number">100</span>, <span class="number">2e-4</span>, <span class="number">5e-4</span></span><br><span class="line">lr_period, lr_decay, net = <span class="number">4</span>, <span class="number">0.9</span>, get_net()</span><br><span class="line">train(net, train_iter, valid_iter, num_epochs, lr, wd, device, lr_period, lr_decay)</span><br></pre></td></tr></table></figure>
+
+<h2 id="7-提交结果"><a href="#7-提交结果" class="headerlink" title="7. 提交结果"></a>7. 提交结果</h2><p>但我们训练出了满意的结果后我们使用设计好的超参数和训练好的模型对测试集重新训练并且对测试集进行分类提交.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">net, preds = get_net(), []</span><br><span class="line">train(net, train_valid_iter, <span class="literal">None</span>, num_epochs, lr, wd, device, lr_period, lr_decay)</span><br><span class="line"><span class="keyword">for</span> X, _ <span class="keyword">in</span> test_iter:</span><br><span class="line">    y_hat = net(X.to(device))</span><br><span class="line">    preds.extend(y_hat.argmax(dim=<span class="number">1</span>).<span class="built_in">type</span>(torch.int32).cpu().numpy())</span><br><span class="line">sorted_ids = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>, <span class="built_in">len</span>(test_ds) + <span class="number">1</span>))</span><br><span class="line">sorted_ids.sort(key=<span class="keyword">lambda</span> x: <span class="built_in">str</span>(x))</span><br><span class="line">df = pd.DataFrame(&#123;<span class="string">&#x27;id&#x27;</span>: sorted_ids, <span class="string">&#x27;label&#x27;</span>: preds&#125;) <span class="comment"># 此为Kaggle要求格式</span></span><br><span class="line">df[<span class="string">&#x27;label&#x27;</span>] = df[<span class="string">&#x27;label&#x27;</span>].apply(<span class="keyword">lambda</span> x: train_valid_ds.classes[x])</span><br><span class="line">df.to_csv(<span class="string">&#x27;C:\\Users\\***\\OneDrive\\桌面\\kaggle\\CIFAR-10\\submission.csv&#x27;</span>, index=<span class="literal">False</span>)</span><br></pre></td></tr></table></figure>
+
+<p>最终我们会得到一个submission.csv文件我们就可以把他上传到Kaggle啦.</p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a target="_blank" rel="noopener" href="https://tangshusen.me/Dive-into-DL-PyTorch/#/">https://tangshusen.me/Dive-into-DL-PyTorch/#/</a></p>
+<p><a target="_blank" rel="noopener" href="https://zh-v2.d2l.ai/">https://zh-v2.d2l.ai/</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/d2l-ai/d2l-zh">https://github.com/d2l-ai/d2l-zh</a></p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/index.html">https://pytorch.org/docs/stable/index.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/mao_hui_fei/article/details/89477938">https://blog.csdn.net/mao_hui_fei/article/details/89477938</a></p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>感谢大哥赏口饭!<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.jpg">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechat.jpg">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -184,161 +277,143 @@
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2021/08/29/Kaggle%20-%20%E5%9B%BE%E5%83%8F%E5%88%86%E7%B1%BB(CIFAR-10)/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/11/ggplot2-cheat-sheet-%E8%BD%AC%E8%BD%BD/" class="archive-article-date">
-  	<time datetime="2021-05-10T17:13:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-11</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2021/05/11/ggplot2-cheat-sheet-%E8%BD%AC%E8%BD%BD/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">ggplot2 cheat sheet (转载)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/11/ggplot2-cheat-sheet-%E8%BD%AC%E8%BD%BD/">ggplot2 cheat sheet (转载)</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">ggplot2</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E6%95%B4%E7%90%86%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">1.</span> <span class="toc-text">1. 整理数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%9B%BE%E5%83%8F%E5%A2%9E%E5%B9%BF"><span class="toc-number">2.</span> <span class="toc-text">2. 图像增广</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%AF%BB%E5%8F%96%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="toc-number">3.</span> <span class="toc-text">3. 读取数据集</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B"><span class="toc-number">4.</span> <span class="toc-text">4.定义模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%9A%E4%B9%89%E8%AE%AD%E7%BB%83%E5%87%BD%E6%95%B0"><span class="toc-number">5.</span> <span class="toc-text">5. 定义训练函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BE%85%E5%8A%A9%E5%87%BD%E6%95%B0"><span class="toc-number">5.1.</span> <span class="toc-text">辅助函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9A%E4%B9%89%E8%AE%AD%E7%BB%83%E5%87%BD%E6%95%B0"><span class="toc-number">5.2.</span> <span class="toc-text">定义训练函数</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="toc-number">6.</span> <span class="toc-text">6. 训练模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%8F%90%E4%BA%A4%E7%BB%93%E6%9E%9C"><span class="toc-number">7.</span> <span class="toc-text">7. 提交结果</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">8.</span> <span class="toc-text">References</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
+        
+    </div>
+</aside>
+
+
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/09/R%E8%AF%AD%E8%A8%80-dnorm-pnorm-qnorm-rnorm%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-article-date">
-  	<time datetime="2021-05-09T12:02:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-09</time>
-</a>
-        </div>
-    	 
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/09/R%E8%AF%AD%E8%A8%80-dnorm-pnorm-qnorm-rnorm%E7%9A%84%E5%8C%BA%E5%88%AB/">R语言 dnorm, pnorm, qnorm, rnorm的区别</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">R</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/09/Hexo%20d%E9%83%A8%E7%BD%B2%E6%8A%A5%E9%94%99%E4%B9%8Bspawn%20failed%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/" class="archive-article-date">
-  	<time datetime="2021-05-09T01:25:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/09/Hexo%20d%E9%83%A8%E7%BD%B2%E6%8A%A5%E9%94%99%E4%B9%8Bspawn%20failed%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88/">Hexo d部署报错之spawn failed的解决方案</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Hexo</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2021/05/09/hello-world/" class="archive-article-date">
-  	<time datetime="2021-05-09T01:23:44.853Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2021/05/09/hello-world/">Hello World</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
 
+  
+    <section id="comments" style="margin:10px;padding:10px;background:#fff;">
+      <div id="vcomment" class="comment"></div> 
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+<script>
+   var notify = 'true' == true ? true : false;
+   var verify = 'false' == true ? true : false;
+    window.onload = function() {
+        new Valine({
+            el: '.comment',
+            notify: notify,
+            verify: verify,
+            app_id: "4il3NxvgAnMo6uEFf6t4MfLf-gzGzoHsz",
+            app_key: "N3RAyDPQDOMIrcVFLmdh6kvs",
+            placeholder: "轻点骂谢谢",
+            avatar:"mm"
+        });
+    }
+</script>
+    </section>
+  
 
           </div>
         </div>
@@ -360,8 +435,8 @@
 	var yiliaConfig = {
 		mathjax: true,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
